@@ -50,14 +50,11 @@ def encrypt(dir ,char , rotNo):
         rotate(rotNo)
         return alp[rotersList[rotNo].index(char)]
 
-# c = (input("enter the plain text : "))
 
 def encryptFunction(c):
     init()
     global alp,rotersList
-    # print(c)
     c = preProcess(c)
-    # print(c)
     ciplist = []
     for ch in c:
         tmp = ch
@@ -67,17 +64,7 @@ def encryptFunction(c):
             tmp = encrypt('b',tmp,1-i)
         ciplist.append(tmp)
     return ("".join(ciplist))
-    # cipheText = "".join(ciplist)
-    # plainText = []
-    # for ch in cipheText:
-    #     tmp = ch
-    #     for i in range(2):
-    #         tmp = encrypt('f',tmp,i)
-    #     for i in range(3):
-    #         tmp = encrypt('b',tmp,2-i)
-    #     plainText.append(tmp)
-    # print("".join(plainText))
-
+    
 def decryptFunction(cipheText):
     cipheText = preProcess(cipheText)
     global alp,rotersList
@@ -91,5 +78,3 @@ def decryptFunction(cipheText):
             tmp = encrypt('b',tmp,2-i)
         plainText.append(tmp)
     return ("".join(plainText))
-
-# encryptFunction(input("enter the plain text : "))
