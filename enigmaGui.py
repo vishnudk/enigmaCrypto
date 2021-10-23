@@ -1,7 +1,7 @@
 import tkinter as tk
 import mapingCharacters
 r = tk.Tk()
-r.geometry("250x170")
+r.geometry("750x750")
 r.title('Enigma')
 inputText = tk.Text(r,height=10,width=50)
 outputText = tk.Text(r,height=10,width=50)

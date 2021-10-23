@@ -32,22 +32,23 @@ def init():
         tmp = alp.copy()
         rotersList.append(tmp)
     alp.reverse()
-def rotate(rotNo):
-    if rotNo == 0:
-        rtCount[rotNo] += 1 
-        tmp = rotersList[rotNo].pop(0)
-        rotersList[rotNo].append(tmp)
-        if rotersList[rotNo][0] == alp[0]:
-            rotate(rotNo)
-        
+def rotate():
+    tmp = rotersList[0].pop(0)
+    rotersList[0].append(tmp)
+    if rotersList[0][0] == "Z":
+        tmp = rotersList[1].pop(0)
+        rotersList[1].append(tmp)
+        if rotersList[1][0] == "Z":
+            tmp = rotersList[2].pop(0)
+            rotersList[2].append(tmp)
     
     
 def encrypt(dir ,char , rotNo):
     if dir == "f":
-        rotate(rotNo)
+        
         return rotersList[rotNo][alp.index(char)]
     else:
-        rotate(rotNo)
+        
         return alp[rotersList[rotNo].index(char)]
 
 
@@ -62,6 +63,8 @@ def encryptFunction(c):
             tmp = encrypt('f',tmp,i)
         for i in range(2):
             tmp = encrypt('b',tmp,1-i)
+
+        rotate()
         ciplist.append(tmp)
     return ("".join(ciplist))
     
@@ -76,5 +79,6 @@ def decryptFunction(cipheText):
             tmp = encrypt('f',tmp,i)
         for i in range(3):
             tmp = encrypt('b',tmp,2-i)
+        rotate()
         plainText.append(tmp)
     return ("".join(plainText))
