@@ -21,7 +21,7 @@ def preProcess(txt):
         if t in alp:
             res.append(t)
     return "".join(res)
-def init():
+def init(rtPos):
     global alp,rotersList
     alp = list(string.ascii_uppercase)
     alp.reverse()
@@ -30,7 +30,11 @@ def init():
     for i in range(3):
         tmp = []
         tmp = alp.copy()
+        tmp2 = tmp[:rtPos[i]]
+        tmp = tmp[rtPos[i]:]
+        tmp.extend(tmp2)
         rotersList.append(tmp)
+    print(rotersList)
     alp.reverse()
 def rotate():
     tmp = rotersList[0].pop(0)
@@ -52,8 +56,8 @@ def encrypt(dir ,char , rotNo):
         return alp[rotersList[rotNo].index(char)]
 
 
-def encryptFunction(c):
-    init()
+def encryptFunction(c, rtPos):
+    init(rtPos)
     global alp,rotersList
     c = preProcess(c)
     ciplist = []
@@ -68,10 +72,10 @@ def encryptFunction(c):
         ciplist.append(tmp)
     return ("".join(ciplist))
     
-def decryptFunction(cipheText):
+def decryptFunction(cipheText,rtPos):
     cipheText = preProcess(cipheText)
     global alp,rotersList
-    init()
+    init(rtPos)
     plainText = []
     for ch in cipheText:
         tmp = ch
